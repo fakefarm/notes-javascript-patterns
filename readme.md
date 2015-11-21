@@ -13,3 +13,7 @@ is to submit an issue with your jasmine tested notes about javascript patterns. 
 ## example
 
 my name is @wwwoodall and my commits and issues will be an example for you. feel free to ping me with comments and/or questions on my commits. That's what issues are for :-)
+
+## about
+
+learn the tools by using the tools.
