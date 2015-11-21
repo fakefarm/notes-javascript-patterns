@@ -17,3 +17,12 @@ my name is @wwwoodall and my commits and issues will be an example for you. feel
 ## about
 
 learn the tools by using the tools.
+
+### Jasmine 2.3
+
+we'll be using [jasmine 2.3](https://github.com/jasmine/jasmine/releases) as it's the latest release
+
+## assignments
+- pull down jasmine
+- make sure you can see the example `Player` and `Song` tests passing. from `jasmine-standalone-2.3.4/SpecRunner.html`
+- poke around and see that they are working.
