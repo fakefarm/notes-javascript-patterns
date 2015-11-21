@@ -8,7 +8,7 @@ since it's a github repo, it uses issues.
 
 ## your responsibility
 
-is to submit an issue with your jasmine tested notes about javascript patterns. An issue is simply you making your code public. It will not harm you or any other code bases. So, you will make an issue, and push your chapter 1 related comments and questions in your issue. you will be pleaseantly surprised that github makes conversations about code very easy because we get immediate context.
+is to submit an issue with your jasmine tested notes about javascript patterns. An issue is simply you making your code public. It will not harm you or any other code bases. So, you will make an issue, and push your chapter 1 related comments and questions in your issue. you will be pleasantly surprised that github makes conversations about code very easy because we get immediate context.
 
 ## example
 
