@@ -32,3 +32,9 @@ After you've submitted your pr, then take a look at other student's implementati
 Students of this course create Pull Requests to be reviewed by the open source community. 
 
 Here is an [example](https://github.com/js-patterns-on-jasmine/chapter-1/pull/1)
+
+
+# here are issues.
+
+https://github.com/js-patterns-on-jasmine/chapter-1/issues/3
+
