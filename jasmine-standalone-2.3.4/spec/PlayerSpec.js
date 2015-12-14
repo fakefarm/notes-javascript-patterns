@@ -1,58 +1,32 @@
-describe("Player", function() {
-  var player;
-  var song;
-
-  beforeEach(function() {
-    player = new Player();
-    song = new Song();
-  });
-
-  it("should be able to play a Song", function() {
-    player.play(song);
-    expect(player.currentlyPlayingSong).toEqual(song);
-
-    //demonstrates use of custom matcher
-    expect(player).toBePlaying(song);
-  });
-
-  describe("when song has been paused", function() {
-    beforeEach(function() {
-      player.play(song);
-      player.pause();
+var windowVar = this;
+describe("Chapter 1", function() {
+  describe("pg. 10 - minimizing globals", function() {
+    it("'this' is a global that is the same as window", function() {
+      expect(windowVar).toBe(window);
     });
-
-    it("should indicate that the song is currently paused", function() {
-      expect(player.isPlaying).toBeFalsy();
-
-      // demonstrates use of 'not' with a custom matcher
-      expect(player).not.toBePlaying(song);
-    });
-
-    it("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
+    it("variables without a var will be global", function() {
+      myglobal = 'hello'; // noted as an antipattern
+      expect(myglobal).toBe(window.myglobal);
     });
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
+  describe("pg. 11 - the problem with globals", function() {
+    it("they are easy to create", function() {
+      function sum(x, y) {
+        result = x + y;
+        return result;
+      }
+      var two = sum(1,1);
+      expect(window.result).toBe(two);
+    });
 
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
-
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
-
-      expect(function() {
-        player.resume();
-      }).toThrowError("song is already playing");
+    it("but you can prevent global variables by using var", function() {
+      function sum(x, y) {
+        var localVar = x + y;
+        return localVar;
+      }
+      var three = sum(2,1);
+      expect(window.localVar).not.toBe(three);
     });
   });
 });
