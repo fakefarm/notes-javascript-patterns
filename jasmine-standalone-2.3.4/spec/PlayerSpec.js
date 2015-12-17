@@ -60,6 +60,93 @@ describe("Chapter 1", function() {
       expect(style).toBe('red');
     });
   });
+
+  describe('for loops', function() {
+    it('work in sub-optimal ways', function() {
+        var myarray = ['code', 'ruby', 'rails'],
+            count = 0;
+
+        for (var i = 0, max = myarray.length; i < max; i++) {
+          count += i;
+        }
+        expect(count).toBe(3);
+    });
+    it('consider moving variables to the top of the loop', function() {
+        var count = 3;
+        function looper() {
+          var i = 0,
+              max,
+              secondArray = ['js', 'coffee', 'jasmine'];
+
+          for (i = 0, max = secondArray.length; i < max; i++) {
+            count -= 1;
+          }
+        }
+        looper();
+        expect(count).toBe(0);
+    });
+
+    it('two performance optimizations are to remove the max and try a while loop', function() {
+      var i, myarray = ['a', 'b'], count = 0;
+      for(i = myarray.length; i--;) {
+        count += 1;
+      }
+      expect(count).toBe(2);
+    });
+  });
+  describe('for-in loops', function() {
+    describe('should be used to iterate over nonarray objects even though technically you can use them with an array - it is not recommended', function() {
+
+      it('The prototype chain is live which means all objects automatically get access to the new method.', function() {
+          var count = 0,
+            man = {
+              hands: 2,
+              legs: 2,
+              heads: 1
+            };
+        if (typeof Object.prototype.clone === 'undefined') {
+          Object.prototype.clone = function() {};
+        }
+        for(var i in man) {
+            count += 1;
+        }
+        expect(count).toBe(4);
+      });
+
+      it('Use hasOwnProperty() to filter out prototype properties', function() {
+
+        var count = 0,
+            man = {
+              hands: 2,
+              legs: 2,
+              heads: 1
+            };
+        if (typeof Object.prototype.clone === 'undefined') {
+          Object.prototype.clone = function() {};
+        }
+        for(var i in man) {
+          if (man.hasOwnProperty(i)) {
+            count += 1;
+          }
+        }
+        expect(count).toBe(3);
+      });
+      it('You can use call() on hasOwnProperty() to filter out specific properties', function() {
+        var count = 0,
+          man = {
+            hands: 2,
+            legs: 2,
+            heads: 1
+          };
+        for(var i in man) {
+          if (Object.prototype.hasOwnProperty.call(man, i)){
+            count +=1;
+          }
+        }
+        expect(count).toBe(3);
+      });
+    });
+  });
 });
 
 
