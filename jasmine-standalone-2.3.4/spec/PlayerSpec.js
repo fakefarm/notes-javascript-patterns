@@ -147,6 +147,9 @@ describe("Chapter 1", function() {
       });
     });
   });
+  describe('A way to augment Built-int Prototypes', function () {
+
+  });
 });
 
 
