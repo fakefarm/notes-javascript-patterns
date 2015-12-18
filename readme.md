@@ -1,11 +1,3 @@
-# chapter 1
+# Essentials (chapter 2)
 
-## view my code 
-All my notes are centralized on [this Pull Request](https://github.com/js-patterns-on-jasmine/chapter-1/pull/1/files)
-
-
-## view my notes
-
-[click here](http://woodall.github.io/js-patterns-on-jasmine-chapter-1/jasmine-standalone-2.3.4/SpecRunner.html?catch=true) to see the specs. Hopefully all passing!.
-
-
+It's actually kind of annoying to realize how much I miss when I only read a js book, compared to typing out the code examples in jasmine because now I see that reading is essentially a futile way to really learn!
