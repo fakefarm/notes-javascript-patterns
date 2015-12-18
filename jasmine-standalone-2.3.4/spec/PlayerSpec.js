@@ -161,6 +161,24 @@ describe("Chapter 1", function() {
       expect(myObject.myMethod()).toBe(5);
     });
   });
+  describe('Switch Pattern', function() {
+    it('is easier to read if you align the case and switch keywords', function() {
+      var inspect_me = 0,
+          result = '';
+
+      // align each case with switch (an exception to the curly braces indention rule)
+      switch (inspect_me) {
+      case 0:
+        result = "zero";
+        break;
+      case 1:
+        result = "one";
+        break;
+      default:
+        result = "unknown";
+      }
+    });
+  });
 });
 
 
