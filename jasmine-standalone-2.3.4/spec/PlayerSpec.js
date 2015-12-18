@@ -147,8 +147,19 @@ describe("Chapter 1", function() {
       });
     });
   });
-  describe('A way to augment Built-int Prototypes', function () {
+  describe('A way to augment Built-in Prototypes', function () {
+    it('is to wrap them in a conditional typeof check', function() {
 
+      var myObject = {};
+
+      if(typeof Object.prototype.myMethod !== 'function') {
+        Object.prototype.myMethod = function () {
+          return 5;
+        };
+      }
+
+      expect(myObject.myMethod()).toBe(5);
+    });
   });
 });
 
