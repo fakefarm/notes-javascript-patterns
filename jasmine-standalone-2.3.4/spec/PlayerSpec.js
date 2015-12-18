@@ -177,6 +177,8 @@ describe("Chapter 1", function() {
       default:
         result = "unknown";
       }
+
+      expect(result).toBe('zero');
     });
   });
 });
