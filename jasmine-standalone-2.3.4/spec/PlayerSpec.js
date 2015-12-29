@@ -262,7 +262,7 @@ describe("Chapter 1", function() {
   describe('number conversions with parseInt()', function () {
     it('Using parseInt() you can get a numeric value from a string', function() {
       var month = '06',
-          year = '09';
+          year  = '09';
       month = parseInt(month, 10);
       year = parseInt(year, 10);
       expect(month + year).toBe(15);
