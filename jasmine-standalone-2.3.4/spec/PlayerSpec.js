@@ -180,8 +180,96 @@ describe("Chapter 1", function() {
 
       expect(result).toBe('zero');
     });
+    it('make sure to add a default: ', function() {
+      var fruit = 'apple',
+          color = '';
+
+      switch(fruit) {
+      case 'pear':
+        color = 'green';
+        break;
+      case 'orange':
+        color = 'orange';
+        break;
+      default:
+        color = 'red';
+      }
+
+      expect(color).toBe('red');
+
+    });
+  });
+
+  describe('Avoiding implied typecasting', function() {
+    it('can prevent from mismatched equality', function (){
+      var zero = 0;
+      if (zero === false) {
+        zero = 'zero';
+      }
+      expect(zero).toBe(0);
+
+      var zero = 0;
+      if (zero == false) {
+        zero = 'zero';
+      }
+      expect(zero).toBe('zero');
+    });
+
+    it('threeequel "===" flushes out true type', function() {
+      var zero = 0,
+          bool,
+          one = '1';
+
+      bool = (zero == true);
+      expect(bool).toBe(false);
+
+      bool = (one == true);
+      expect(bool).toBe(true);
+
+      bool = (zero === true);
+      expect(bool).toBe(false);
+
+
+      bool = (one === true);
+      expect(bool).toBe(false);
+
+    });
+  });
+
+  describe('eval() is evil', function() {
+    it('should not be used because there are better ways to solve the issue', function() {
+      var property =  'name',
+               obj = {},
+               ans = '';
+
+      ans = eval("obj." + property);
+      expect(ans).toBe(undefined);
+    });
+    it('eval pollutes the global namespace', function() {
+      var one,
+          jsstring = 'var one = 1';
+          eval(jsstring);
+      expect(one).toBe(1);
+    });
+    it('eval can access stuff in the outer scope', function() {
+      var result = (function() {
+        var local = 1;
+        return eval('local = 3;');
+      }());
+      expect(result).toBe(3);
+    });
+  });
+  describe('number conversions with parseInt()', function () {
+    it('Using parseInt() you can get a numeric value from a string', function() {
+      var month = '06',
+          year  = '09';
+      month = parseInt(month, 10);
+      year = parseInt(year, 10);
+      expect(month + year).toBe(15);
+    });
   });
 });
+
 
 
 
