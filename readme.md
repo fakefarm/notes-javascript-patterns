@@ -1,6 +1,6 @@
 # Javascript Patterns
 
-[view my notes as passing specs](http://woodall.github.io/javascript-patterns/)
+[view my notes as passing specs](http://woodall.github.io/javascript-patterns/index)
 
 ## Specs as notes
 
