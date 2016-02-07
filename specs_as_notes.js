@@ -2,9 +2,72 @@ var windowVar = this;
 
 describe("Chapter 3", function() {
   'use strict';
-  describe('Literals and Constructors', function() {
-    it("works", function() {
-      expect(true).toBe(true);
+
+  describe('Creating Constructors', function() {
+    it("using a separate object, named 'That' helps make sure constructors behave as such.", function() {
+      function Waffle() {
+        var that = {};
+        that.tastes = 'yummy';
+        return that;
+      }
+      var wwwaffle = new Waffle;
+      expect(wwwaffle.tastes).toBe('yummy');
+    });
+    it('if the object is simple, just wrap the objects in a return', function() {
+      function Waffle() {
+        return {
+          tastes: 'yummy'
+        };
+      }
+      var wwwaffle = new Waffle;
+      expect(wwwaffle.tastes).toBe('yummy');
+    });
+
+    it('This pattern will check if this is an instance of constructor and if not, invokes itself with new', function(){
+
+      function Waffle() {
+        if(!(this instanceof Waffle)) {
+          return new Waffle();
+        }
+        this.tastes = 'yummy';
+      }
+
+      Waffle.prototype.wantAnother = true;
+
+      var first = new Waffle(),
+          second = Waffle();
+
+      expect(first.tastes).toBe(second.tastes);
+    });
+  });
+
+  describe('Working with JSON', function() {
+    it('a simple example', function() {
+      var jstr = '{"mykey": "my value"}';
+      console.log(jstr);
+      var data = JSON.parse(jstr);
+      console.log(data);
+      expect(data.mykey).toBe('my value');
+    });
+    it('jquery has a method to parse json', function() {
+      var jstr = '{"mykey":"my value"}';
+      var data = jQuery.parseJSON(jstr);
+      expect(data.mykey).toBe('my value');
+    });
+    it('the opposite of JSON.parse() is JSON.stingify()', function() {
+      var dog = {
+        name: "Marty",
+        color: 'black and white'
+      };
+      var jstr = JSON.stringify(dog);
+      expect(jstr).toBe('{"name":"Marty","color":"black and white"}');
+    });
+    describe('Regular Expression Literals', function() {
+      it('create one with slashes /match/gmi. The g stands for global matching, m stands for multiline, and i stands for case-insensitive', function() {
+        var re = /\\/gmi;
+        var no_letters = 'abc123XYZ'.replace(/[a-z]/gi, "");
+        expect(no_letters).toBe('123');
+      });
     });
   });
 });
