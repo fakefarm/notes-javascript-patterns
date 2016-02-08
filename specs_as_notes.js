@@ -1,5 +1,18 @@
 var windowVar = this;
 
+describe('Chapter 4', function() {
+  describe('Functions', function() {
+    it('Function A, being an object, has properties and methods, one of which happens to be another function B. Then B can accept function C as an argument and, when executed, can return another function D.', function() {
+      var result = fnA();
+      function fnA()   { return fnB(fnC); }
+      function fnB(fn) { return fn(); }
+      function fnC()   { return fnD(); }
+      function fnD()   { return 'hello world!'; }
+      expect(result).toBe('hello world!');
+    });
+  });
+});
+
 describe("Chapter 3", function() {
   'use strict';
 
