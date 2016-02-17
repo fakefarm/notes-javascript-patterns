@@ -10,6 +10,19 @@ describe('Chapter 4', function() {
       function fnD()   { return 'hello world!'; }
       expect(result).toBe('hello world!');
     });
+
+    it('a callback example'function () {
+      var findNodes = function() {
+        var i = 100000,
+          nodes = [],
+          found;
+        while (i) {
+          i -= 1;
+          nodes.push(found);
+        }
+        return nodes;
+      }
+    })
   });
 });
 
@@ -419,4 +432,3 @@ describe("Chapter 1", function() {
     });
   });
 });
-
