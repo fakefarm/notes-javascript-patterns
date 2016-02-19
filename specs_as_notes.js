@@ -11,17 +11,28 @@ describe('Chapter 4', function() {
       expect(result).toBe('hello world!');
     });
 
-    it('a callback example'function () {
+    it('a callback example', function () {
+
+      var i = 100,
+        nodes = [],
+        found;
+
       var findNodes = function() {
-        var i = 100000,
-          nodes = [],
-          found;
+
+        if (typeof callback !=- 'function') {
+          callback = false;
+        }
+
         while (i) {
           i -= 1;
-          nodes.push(found);
+          nodes.push(i);
         }
         return nodes;
       }
+
+      findNodes();
+
+      expect(nodes.length).toBe(100);
     })
   });
 });
