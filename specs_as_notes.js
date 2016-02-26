@@ -2,6 +2,118 @@ var windowVar = this;
 
 describe('Chapter 4', function() {
   describe('Functions', function() {
+
+    describe( 'Immediate Pattern', function() {
+      it('is how we keep our global space clean', function() {
+        var days;
+        ( function() {
+          var days = ['Sun', 'Mon', 'Tue', 'Wed','Thu','Fri'],
+          today = new Date(),
+          msg = 'Today is ' + days[today.getDay()] + ', ' + today.getDate();
+          console.log(msg);
+        }());
+
+        expect(days).toBe(undefined);
+      });
+      it('can be assigned to a variable', function() {
+        var app = (function(){
+          function get_name(name) {
+            return name;
+          }
+          var profile = {
+            name: get_name,
+            age: 38,
+            status: 'waiting on the Lord'
+          };
+          return {
+            foo: profile
+          }
+        }());
+        expect(app.foo.name('woodall')).toBe('woodall');
+      });
+    });
+
+    describe('Self-Defining', function() {
+      it('some examples', function() {
+        var scareMe = function() {
+          var price = 1;          
+          console.log('boo 1')
+
+          scareMe = function() {
+            price = 2;
+            console.log('boo 2');
+          }
+          return price;
+        }
+        var first = scareMe();
+        var second = scareMe();
+        expect(first).not.toBe(second);
+
+        scareMe.property = 'properly';
+        
+        var prank = scareMe;
+
+        var spooky = {
+          boo: scareMe
+        };
+        
+        prank();
+        prank();
+        console.log(prank.property);
+        
+        spooky.boo();
+        spooky.boo();
+        console.log(spooky.boo.property);
+
+        scareMe();
+        scareMe();
+        console.log(scareMe.property);
+
+
+
+      });
+    });
+
+    describe('Are objects and can return another more specialized function, or it can create another function on-demand rather than data or arrays', function() {
+      it('assigning a function with parens to a variable will initiate that function. Notice that variable assignment is an active activity because it runs the function b/c the variable had () Then, invoking that function will also run its own code', function(){
+
+        var setup = function() {
+          x = 1;
+          return function() {
+            x+=1;
+          }
+        }
+        
+        var my = setup();
+        my();
+        expect(my).not.toBe(setup);
+
+      });
+      it('another example', function() {
+
+        var setup = function() {
+          var count = 0;
+
+          return {
+            next: function() {
+             return count+=1
+            }
+          }
+
+        }
+
+        var next = setup();
+        var answer = next.next();
+        expect(answer).toBe(1);
+
+        // var next = setup();
+        // var answer = next();
+        // expect(answer).toBe(1);
+
+
+      })
+    });
+
     it('Function A, being an object, has properties and methods, one of which happens to be another function B. Then B can accept function C as an argument and, when executed, can return another function D.', function() {
       var result = fnA();
       function fnA()   { return fnB(fnC); }
